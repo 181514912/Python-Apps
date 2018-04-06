@@ -37,3 +37,7 @@ class Ship():
     # drawing ship at its current position
     def drawme(self):
         self.screen.blit(self.image,self.rect)
+
+    # center the ship on screen
+    def center_ship(self):
+        self.center=self.screen_rect.centerx
