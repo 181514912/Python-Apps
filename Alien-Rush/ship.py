@@ -1,10 +1,12 @@
 # class to manage player's ship's behavior
 import pygame
+from pygame.sprite import Sprite
 
-class Ship():
+class Ship(Sprite):
 
     # initialising the ship and setting its stating position
     def __init__(self,game_set,screen):
+        super(Ship,self).__init__()
         self.screen=screen
         self.game_set=game_set
 

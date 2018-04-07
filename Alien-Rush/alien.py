@@ -11,7 +11,7 @@ class Alien(Sprite):
         self.game_set=game_set
 
         # loading alien image
-        self.image=pygame.image.load('images/alien2.png')
+        self.image=pygame.image.load('images/alien1.png')
         self.rect=self.image.get_rect()
 
         # each new alien start near top-left of screen
