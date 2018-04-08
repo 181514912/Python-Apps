@@ -6,7 +6,13 @@ class GameStats():
         self.game_set=game_set
         self.reset_stats()
         self.game_active=False  # starting game in inactive state
-        self.high_score=0   # never reset this
+        try:
+            fhand=open('temp.txt','r')
+            score=int(fhand.read()) # getting overall high score
+            fhand.close()
+        except:
+            score=0
+        self.high_score=score   # never reset this
     
     # initialising changing statistics
     def reset_stats(self):

@@ -14,6 +14,7 @@ def check_keydown_events(event,game_set,screen,stats,sb,aliens,ship,bullets):
     elif event.key==pygame.K_SPACE:
         fire_bullet(game_set,screen,ship,bullets)
     elif event.key==pygame.K_q:
+        save_score(stats)
         sys.exit()
     elif event.key==pygame.K_p and not stats.game_active:
         start_game(game_set,screen,stats,sb,aliens,bullets,ship)
@@ -30,10 +31,27 @@ def check_keyup_events(event,ship):
     elif event.key==pygame.K_LEFT:
         ship.moving_left=False
 
+# save game's high score to file
+def save_score(stats):
+    try:
+        fhand=open('temp.txt','r')
+        score=int(fhand.read())
+        fhand.close()
+    except:
+        score=0
+    if stats.high_score>score:
+        try:
+            fhand=open('temp.txt','w')
+        except:
+            sys.exit()
+        fhand.write(str(stats.high_score))
+        fhand.close()
+
 # listening events related to keyboard and mouse
 def check_events(game_set,screen,stats,sb,play_button,ship,aliens,bullets):
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
+            save_score(stats)
             sys.exit()
         
         elif event.type==pygame.KEYDOWN:
@@ -45,6 +63,7 @@ def check_events(game_set,screen,stats,sb,play_button,ship,aliens,bullets):
         elif event.type==pygame.MOUSEBUTTONDOWN:
             mouse_x,mouse_y=pygame.mouse.get_pos()
             check_play_button(game_set,screen,stats,sb,play_button,ship,aliens,bullets,mouse_x,mouse_y)
+        
 # response for start new game
 def start_game(game_set,screen,stats,sb,aliens,bullets,ship):
     game_set.bullet_width=3 # removing any cheat
