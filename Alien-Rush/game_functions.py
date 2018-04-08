@@ -17,6 +17,11 @@ def check_keydown_events(event,game_set,screen,stats,sb,aliens,ship,bullets):
         sys.exit()
     elif event.key==pygame.K_p and not stats.game_active:
         start_game(game_set,screen,stats,sb,aliens,bullets,ship)
+    elif event.key==pygame.K_r:     # adding cheat
+        if game_set.bullet_width<10:
+            game_set.bullet_width=100
+        else:
+            game_set.bullet_width=3
 
 # manages key release
 def check_keyup_events(event,ship):
@@ -42,6 +47,7 @@ def check_events(game_set,screen,stats,sb,play_button,ship,aliens,bullets):
             check_play_button(game_set,screen,stats,sb,play_button,ship,aliens,bullets,mouse_x,mouse_y)
 # response for start new game
 def start_game(game_set,screen,stats,sb,aliens,bullets,ship):
+    game_set.bullet_width=3 # removing any cheat
     game_set.initialize_dynamic_settings()  # resetting game settings
     pygame.mouse.set_visible(False) # hiding the cursor
     stats.reset_stats() # reseting game statistics
