@@ -7,7 +7,7 @@ class Settings():
         # screen settings
         self.screen_width=1200
         self.screen_height=700
-        self.bg_col=(230,230,230)   #setting background color of screen RGB
+        self.bg_col=(230,230,230)   #setting background color of screen RGB , sky-blue=(135,206,250)
 
         # ship settings
         self.ship_limit=3   # total life

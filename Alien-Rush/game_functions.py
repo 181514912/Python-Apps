@@ -15,7 +15,7 @@ def check_keydown_events(event,game_set,screen,stats,sb,aliens,ship,bullets):
     elif event.key==pygame.K_LEFT:
         ship.moving_left=True
     elif event.key==pygame.K_SPACE:
-        fire_bullet(game_set,screen,ship,bullets)
+        fire_bullet(game_set,screen,stats,ship,bullets)
     elif event.key==pygame.K_q:
         save_score(stats)
         sys.exit()
@@ -150,10 +150,11 @@ def check_collisions_alien_bullet(game_set,screen,stats,sb,ship,aliens,bullets):
         create_fleet(game_set,screen,ship,aliens)   # creating new fleet
 
 # firing a bullet in limit
-def fire_bullet(game_set,screen,ship,bullets):
+def fire_bullet(game_set,screen,stats,ship,bullets):
     if len(bullets)<game_set.bullets_allowed:
         new_bullet=Bullet(game_set,screen,ship) # creating bullet and adding it to group
-        effect.play()
+        if stats.game_active:
+            effect.play()
         bullets.add(new_bullet)
 
 # finding number of alien per row
