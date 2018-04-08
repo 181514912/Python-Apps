@@ -7,7 +7,7 @@ class GameStats():
         self.reset_stats()
         self.game_active=False  # starting game in inactive state
         try:
-            fhand=open('temp.txt','r')
+            fhand=open('temp.rdf','r')
             score=int(fhand.read()) # getting overall high score
             fhand.close()
         except:

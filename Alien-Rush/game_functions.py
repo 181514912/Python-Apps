@@ -5,6 +5,9 @@ import pygame
 from bullet import Bullet
 from alien import Alien
 
+pygame.mixer.init()
+effect = pygame.mixer.Sound('shoot.wav')    # adding sound effect
+
 # manages keypress
 def check_keydown_events(event,game_set,screen,stats,sb,aliens,ship,bullets):
     if event.key==pygame.K_RIGHT:   # checking for right arrow key
@@ -34,14 +37,14 @@ def check_keyup_events(event,ship):
 # save game's high score to file
 def save_score(stats):
     try:
-        fhand=open('temp.txt','r')
+        fhand=open('temp.rdf','r')
         score=int(fhand.read())
         fhand.close()
     except:
         score=0
     if stats.high_score>score:
         try:
-            fhand=open('temp.txt','w')
+            fhand=open('temp.rdf','w')
         except:
             sys.exit()
         fhand.write(str(stats.high_score))
@@ -150,6 +153,7 @@ def check_collisions_alien_bullet(game_set,screen,stats,sb,ship,aliens,bullets):
 def fire_bullet(game_set,screen,ship,bullets):
     if len(bullets)<game_set.bullets_allowed:
         new_bullet=Bullet(game_set,screen,ship) # creating bullet and adding it to group
+        effect.play()
         bullets.add(new_bullet)
 
 # finding number of alien per row
